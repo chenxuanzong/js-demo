@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>控制Div属性</title>
+  <style>
+    #outer {
+      width: 500px;
+      margin: 0 auto;
+      padding: 0;
+      text-align: center;
+    }
+
+    #div1 {
+      width: 100px;
+      height: 100px;
+      background: black;
+      margin: 10px auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<div id="outer">
+  <input type="button" value="变宽"/>
+  <input type="button" value="变高"/>
+  <input type="button" value="变色"/>
+  <input type="button" value="隐藏"/>
+  <input type="button" value="重置"/>
+  <div id="div1"></div>
+</div>
+
+<script>
+  function changeStyle(ele, attr, value) {
+    ele.style[attr] = value
+  };
+
+  window.onload = function () {
+    // 获取所需元素
+    let oBtn = document.getElementsByTagName('input');
+    let oDiv = document.getElementById('div1');
+
+    // 将要添加的样式
+    let oAtt = ['width', 'height', 'background', 'display', 'display'];
+    let oVal = ['200px', '200px', 'red', 'none', 'block'];
+
+    // 为每个按钮添加点击事件
+    for (let i = 0; i < oBtn.length; i++) {
+      oBtn[i].index = i;
+      oBtn[i].onclick = function () {
+
+        // 当点击重置按钮时，去除div的内联样式
+        if (this.index === oBtn.length -1) {
+          oDiv.style.cssText = "";
+        }
+        changeStyle(oDiv, oAtt[this.index], oVal[this.index])
+      }
+    }
+  }
+</script>
+</body>
+</html>
